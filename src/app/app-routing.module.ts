@@ -24,6 +24,10 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'newplace',
+    loadChildren: () => import('./places/place-add/place-add.module').then(m => m.PlaceAddPageModule)
+  }
 ];
 
 @NgModule({
