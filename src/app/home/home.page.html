@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Hello World
     </ion-title>
@@ -7,14 +10,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <h1>My first App</h1>
-    <ion-text>My First App</ion-text>
-  </div>
+  <ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-input type="text" placeholder="Limit" #limit></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input type="text" placeholder="Page" #page></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button color="secondary" (click)="filters(limit,page)">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-list>
+    <ion-card *ngFor="let photo of photos">
+      <img [src]="photo.thumbnailUrl">
+      <ion-card-content>
+        <ion-card-header>
+          <ion-card-title>{{ photo.title }}</ion-card-title>
+          <ion-card-subtitle>{{ photo.albumId }}</ion-card-subtitle>
+          : <a [href]="photo.url" target="_blank">{{photo.url}}</a>
+        </ion-card-header>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
